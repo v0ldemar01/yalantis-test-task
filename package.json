@@ -1,0 +1,39 @@
+{
+  "name": "yalantis-test-task",
+  "version": "1.0.0",
+  "description": "Node.js server",
+  "main": "./src/server.ts",
+  "scripts": {
+    "start": "ts-node ./src/server.ts",
+    "dev": "ts-node-dev ./src/server.ts",
+    "lint:start": "nodemon -r ./src/server.ts --exec \"npm run linter && ts-node\"",
+    "linter": "eslint --ext .ts ./src",
+    "typeorm": "node_modules/.bin/ts-node node_modules/typeorm/cli.js",
+    "add-migration": "node_modules/.bin/ts-node node_modules/typeorm/cli.js migration:generate -n",
+    "migrate": "node_modules/.bin/ts-node node_modules/typeorm/cli.js migration:run",
+    "migration-revert": "node_modules/.bin/ts-node node_modules/typeorm/cli.js migration:revert"
+  },
+  "author": "Volodymyr Minchenko",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "fastify": "^3.20.2",
+    "fastify-swagger": "^4.9.0",
+    "pg": "^8.7.1",
+    "ts-node": "^10.2.1",
+    "typeorm": "^0.2.37",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^16.7.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.1",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.3.5"
+  }
+}
