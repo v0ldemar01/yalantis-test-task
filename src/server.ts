@@ -1,31 +1,24 @@
+/* eslint-disable no-console */
 import fastify, { FastifyInstance, FastifyPluginCallback } from 'fastify';
 import { Server, IncomingMessage, ServerResponse } from 'http';
-import fastswagger, { SwaggerOptions } from 'fastify-swagger';
+import swagger, { SwaggerOptions } from 'fastify-swagger';
+import { createConnection } from 'typeorm';
 import env from './env';
+import { swaggerOptions } from './config/swagger';
 
 const server: FastifyInstance<Server, IncomingMessage, ServerResponse> = fastify({ logger: true });
 
-server.register(fastswagger as FastifyPluginCallback<SwaggerOptions, Server> | any, {
-  exposeRoute: true,
-  routePrefix: '/swagger/docs',
-  swagger: {
-    info: { title: 'fastify-api' },
-    host: 'localhost',
-    schemes: ['http'],
-    consumes: ['application/json'],
-    produces: ['application/json']
-  }
-});
+server.register(swagger as FastifyPluginCallback<SwaggerOptions, Server> | any, swaggerOptions);
+
+createConnection()
+  .then(() => console.log('Connection has been established successfully.'))
+  .catch(err => console.error('Unable to connect to the database:', err));
 
 server.listen(env.server.port as string, (err, address) => {
   if (err) {
     server.log.error(err);
     process.exit(1);
   }
-  server.log.info(`Server listening on ${address}`);
-});
-
-server.ready(err => {
-  if (err) throw err;
   server.swagger();
+  server.log.info(`Server listening on ${address}`);
 });
