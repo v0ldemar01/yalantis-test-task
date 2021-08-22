@@ -1,14 +1,21 @@
 /* eslint-disable no-console */
 import fastify, { FastifyInstance, FastifyPluginCallback } from 'fastify';
 import { Server, IncomingMessage, ServerResponse } from 'http';
+import cors from 'fastify-cors';
 import swagger, { SwaggerOptions } from 'fastify-swagger';
+import multer from 'fastify-multer';
 import { createConnection } from 'typeorm';
-import env from './env';
 import { swaggerOptions } from './config/swagger';
+import routes from './api/routes';
+import env from './env';
 
 const server: FastifyInstance<Server, IncomingMessage, ServerResponse> = fastify({ logger: true });
 
 server.register(swagger as FastifyPluginCallback<SwaggerOptions, Server> | any, swaggerOptions);
+server.register(cors);
+server.register(multer.contentParser);
+
+routes(server);
 
 createConnection()
   .then(() => console.log('Connection has been established successfully.'))

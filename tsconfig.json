@@ -26,5 +26,5 @@
     "lib": ["es2020"],
     "typeRoots": ["src/common/typings", "node_modules/@types"]
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*", "app.js"]
 }

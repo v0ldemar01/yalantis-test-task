@@ -22,6 +22,11 @@ const env = {
     cli: {
       migrationsDir: getOsEnv('TYPEORM_MIGRATIONS_DIR')
     }
+  },
+  cloud: {
+    name: getOsEnv('CLOUD_NAME'),
+    key: getOsEnv('CLOUD_KEY'),
+    secret: getOsEnv('CLOUD_SECRET')
   }
 };
 

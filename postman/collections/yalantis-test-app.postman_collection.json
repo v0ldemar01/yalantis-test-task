@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "3a7d5bea-5d30-4d81-8d6b-5e19038b5f29",
+		"name": "yalantis-test-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "logo",
+							"type": "file",
+							"src": "/C:/Users/v0ldemar_01/Desktop/Binary-Studio-logo-profile.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "dfdfdfsfdfsfsdf",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "sdf",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "voldemarprk2001@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "877888787",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/api/user",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/user/f34da965-e807-4371-98c5-41eb42d3d05c",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user",
+						"f34da965-e807-4371-98c5-41eb42d3d05c"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

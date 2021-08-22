@@ -1,16 +1,14 @@
 import { EntityRepository, FindOneOptions, Repository } from 'typeorm';
-import { IRegisterUserDto } from '../../common/models/user';
+import { ICreateUserDto } from '../../common/models/user';
 import { User } from '../entities/User';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
-  async createUser(user: IRegisterUserDto): Promise<string> {
-    const createdUser = await this.create(user);
-    return createdUser.id;
+  async createUser(user: ICreateUserDto): Promise<User> {
+    return this.save(user);
   }
 
   async getByOption(where: FindOneOptions<User>): Promise<User> {
-    const user: User = await this.findOne(where);
-    return user;
+    return this.findOne(where);
   }
 }

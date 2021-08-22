@@ -1,7 +1,7 @@
-export interface IRegisterUserDto {
+export interface ICreateUserDto {
   firstName: string;
   lastName: string;
   email: string;
-  logo: string;
+  logoLink: string;
   password: string;
 }
